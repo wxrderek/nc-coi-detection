@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import time
 from time import sleep
 import json
 
@@ -47,6 +48,7 @@ def safe_json_request(url, retries=3, delay=0.15):
                 print("Response preview:", r.text[:300])
                 return None
 
+start = time.time()
 
 for i, (name, state, county, tract) in enumerate(tracts, start=1):
     print(f"Tract {i} out of {len(tracts)}")
@@ -76,6 +78,8 @@ df["GOID"] = (
     + df["tract"].astype(str)
     + df["block_group"].astype(str)
 )
+
+print("Total computation time: ", time.time() - start)
 
 print(df.head())
 print("Total NC block groups:", len(df))
