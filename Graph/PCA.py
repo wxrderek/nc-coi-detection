@@ -1,5 +1,6 @@
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+from matplotlib import pyplot as plt
 
 import pandas as pd
 import numpy as np
@@ -36,5 +37,27 @@ loadings = pd.DataFrame(
     index=variables
 )
 
-pc1_contrib = loadings["PC1"].abs().sort_values(ascending=False)
-print(pc1_contrib.head(10))
+
+
+# plt.figure(figsize=(8, 5))
+# plt.plot(
+#     range(1, len(pca.explained_variance_ratio_) + 1),
+#     pca.explained_variance_ratio_,
+#     marker='o'
+# )
+# plt.xlabel("Principal Component")
+# plt.ylabel("Explained Variance Ratio")
+# plt.title("Scree Plot")
+# plt.grid(True)
+# plt.savefig("PCAScree.png")
+
+pc1 = loadings["PC1"].abs().sort_values(ascending=False)
+plt.figure(figsize=(12, 6))
+pc1.plot(kind="bar")
+
+plt.title("Variable Contributions to Principal Component 1")
+plt.xlabel("Variable")
+plt.ylabel("Absolute Loading Value")
+plt.tight_layout()
+plt.savefig("PCA1Contributions.png")
+

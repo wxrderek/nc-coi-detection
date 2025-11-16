@@ -18,7 +18,7 @@ VARIABLES = vars.VARIABLES
 LABELS = vars.LABELS
 
 
-
+print(len(VARIABLES))
 
 
 get_vars = ",".join(VARIABLES)
@@ -84,4 +84,4 @@ print("Total computation time: ", time.time() - start)
 print(df.head())
 print("Total NC block groups:", len(df))
 
-df.to_csv("census_data.csv", index = False)
+df.to_csv("census_data_part_2.csv", index = False)
