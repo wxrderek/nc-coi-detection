@@ -129,6 +129,8 @@ ax.axis("off")
 plt.title("NC Census Block Group COIs (Ward)")
 plt.savefig("Images/COIS/Ward_COIS_geomap.png")
 
+df_coi_ward.to_csv("coi_mapping.csv")
+
 
 
 
