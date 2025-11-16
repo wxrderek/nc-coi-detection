@@ -62,7 +62,7 @@ shp.plot(column="COI_Leiden",
          ax=ax)
 ax.axis("off")
 plt.title("NC Census Block Group COIs (Leiden)")
-plt.savefig("leiden_COIS_geomap.png")
+plt.savefig("leiden_COIS_geomap2.png")
 
 
 
