@@ -2,8 +2,19 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 import pandas as pd
+import numpy as np
 
-X = pd.read_csv("../Census\ Data/census_data.csv")
+df = pd.read_csv("../Census Data/census_data_cleaned.csv")
+
+
+
+
+X = df.drop(columns = ["NAME", "state", "county", "tract", "GOID"])
+
+
+
+GEOIds = df["GOID"]
+print(GEOIds)
 
 variables = X.columns
 
@@ -13,6 +24,11 @@ X_scaled = scaler.fit_transform(X)
 
 pca = PCA(n_components=6)
 X_pca = pca.fit_transform(X_scaled)
+
+
+
+np.savez("census_data_pca.npz", geoids = df["GOID"].values, pca=X_pca)
+
 
 loadings = pd.DataFrame(
     pca.components_.T,

@@ -1,5 +1,6 @@
 import pandas as pd
 from matplotlib import pyplot as plt
+import math
 
 df = pd.read_csv("census_data.csv")
 
@@ -14,6 +15,8 @@ for column in df.columns:
 for col in df.columns[1:]:
     median = df[col].median()
     df[col] = df[col].mask(df[col] < 0, median)
+
+    
 
 
 
@@ -41,6 +44,16 @@ df["HouseholdsWithChildrenpct"] = df["Households with children under 18"]/df["To
 # print(df["Total population"].head())
 
 df = df.drop(columns = ["Total population", "Male population", "Female population", "White alone", "Black or African American alone", "Asian alone", "Hispanic or Latino origin", "Total housing units", "Occupied housing units", "Vacant housing units", "Owner-occupied housing units", "Renter-occupied housing units", "Vacant units for rent", "Vacant units for sale", "Total households", "Married-couple households", "Female householder, no husband present", "Male householder, no wife present", "Households with children under 18"])
+
+#REMOVE NAs AND INFINITIES
+for col in df.columns[1:]:
+    if col == "GOID":
+        continue
+    median = df[col].median()
+    df[col] = df[col].mask(df[col] > 10000000000000000, median)
+    df[col] = df[col].mask(df[col].isna(), median)
+
+
 
 
 df.to_csv("census_data_cleaned.csv")
