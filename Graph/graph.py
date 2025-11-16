@@ -57,7 +57,7 @@ nx.draw_networkx_edges(G, pos, alpha=0.1, width=0.2)
 
 plt.title("Leiden COI Structure (Topology-only Visualization)")
 plt.axis("off")
-plt.show()
+plt.savefig("leiden_COIS.png")
 
 
 
